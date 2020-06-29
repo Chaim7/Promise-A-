@@ -3,11 +3,11 @@ const deepClone=(obj)=>{
     if(obj instanceof Date)return new Date(obj)
     if(obj instanceof RegExp) return new RegExp(obj)
     if(typeof obj!=='object') return obj
-    let cloneObj=new obj.constructor
-    for(let key in obj){
-        if(obj.hasOwnProperty(key)){
-            cloneObj[key]=deepClone(obj[key])
-        }
-    }  
-    return cloneObj
+    let clone=new obj.constructor()
+    Object.keys(obj).forEach(key=>{
+        clone[key]=deepClone(obj[key])
+    })
+    return clone
 }
+
+let clone = JSON.parse(JSON.stringify(obj))

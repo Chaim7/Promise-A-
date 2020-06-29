@@ -15,13 +15,13 @@
             throw new Error('Wrong')
         }
         if(!this._map[eventName]){
-           const callbackArr= this._map[eventName] || []
+            this._map[eventName] =[]
         }
         this._map[eventName].push(callback)
     }
     unsubscribe(eventName,callback){
         if(!eventName){
-            this._map[eventName]={}
+            this._map={}
         }else if(eventName&&!callback){
             delete this._map[eventName]
         }else{
